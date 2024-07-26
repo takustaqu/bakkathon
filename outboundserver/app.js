@@ -7,6 +7,11 @@ var fs = require("fs"),
 
  
 var server = http.createServer(function(request, response) {
+    if (path.normalize(decodeURI(request.url)) !== decodeURI(request.url)) {
+        response.statusCode = 403;
+        response.end();
+        return;
+    }
 
   console.log(request.url);
 
